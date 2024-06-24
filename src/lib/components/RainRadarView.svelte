@@ -1,25 +1,35 @@
 <script lang="ts">
-    import type { DataItemRainRadar } from "$lib/types";
+    import type { DataItemRainRadar, RRLocationForecastNode } from "$lib/types";
+    import { stripHtmlTags } from "$lib/utils/StringUtil";
 
     export let data: DataItemRainRadar;
     console.log(data);
-    $: icon = getIcon(data.content.locationForecast.message.status);
+    $: currentInfo = data.content.locationForecast.forecasts.find((x) => {
+        return x.timestamp == data.content.currentEpochSecond;
+    });
+    // console.log(currentInfo);
+    $: icon = getIcon(currentInfo);
 
-    function getIcon(_status?: string) {
-        switch (_status) {
-            case "NONE":
-                return "norain";
-            default:
-                return "norain";
+    function getIcon(_currentInfo?: RRLocationForecastNode) {
+        if (!_currentInfo) {
+            return "norain";
         }
+        if (_currentInfo.weather == "NONE") {
+            return "norain";
+        }
+        return `rain_${_currentInfo.strength.toLowerCase()}`;
     }
 </script>
 
 {#if data}
-    <div class="root hstack">
-        <img src="./images/rainRadar/{icon}.svg" alt="" />
-        <div class="message">{data.content.locationForecast.message.text}</div>
-    </div>
+    <a href={data.url} class="root hstack">
+        {#if icon}
+            <img src="./images/rainRadar/{icon}.svg" alt="" />
+        {:else}
+            <div>{data.content.locationForecast.message.status}</div>
+        {/if}
+        <div class="message">{stripHtmlTags(data.content.locationForecast.message.text)}</div>
+    </a>
 {:else}
     <div>no data</div>
 {/if}

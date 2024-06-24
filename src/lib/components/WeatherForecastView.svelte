@@ -1,27 +1,27 @@
 <script lang="ts">
-    import type { DataItemWeatherForecast } from "$lib/types";
+    import type { DataItemWeatherForecast, Weather } from "$lib/types";
     import TempertureView from "./TempertureView.svelte";
 
     export let data: DataItemWeatherForecast | undefined;
     $: forecast = data?.content.optimalDailyWeatherForecast;
-    $: icon = getIcon(forecast?.name);
 
-    function getIcon(name?: string) {
-        switch (name) {
-            case "曇り":
-                return "cloudy";
-            default:
-                return undefined;
-        }
+    $: icon = getIcon(forecast?.weather);
+    $: secondaryIcon = getIcon(forecast?.secondaryWeather);
+
+    function getIcon(name?: Weather) {
+        return name?.toLowerCase();
     }
 </script>
 
-{#if forecast}
-    <div class="root">
-        {#if icon}
-            <img class="icon" src="./images/weather/{icon}.svg" alt={forecast.name} />
+<a href={data?.url} class="root">
+    {#if forecast}
+        {#if secondaryIcon}
+            <div class="doubleIcon hstack">
+                <img class="icon first" src="./images/weather/{icon}.svg" alt="" />
+                <img class="icon second" src="./images/weather/{secondaryIcon}.svg" alt="" />
+            </div>
         {:else}
-            <div>{forecast.name}</div>
+            <img class="icon single" src="./images/weather/{icon}.svg" alt="" />
         {/if}
 
         <div class="tempertures vstack">
@@ -38,10 +38,10 @@
                 diff={forecast.minTemperatureDiff}
             />
         </div>
-    </div>
-{:else}
-    <div>データなし</div>
-{/if}
+    {:else}
+        <div>データなし</div>
+    {/if}
+</a>
 
 <style>
     .root {
@@ -54,9 +54,21 @@
         gap: 4px;
     }
     .icon {
+        object-fit: contain;
+    }
+    .doubleIcon > img {
+        width: 24px;
+        height: 24px;
+    }
+    .single {
         width: 36px;
         height: 36px;
-        object-fit: contain;
+    }
+    .first {
+        transform: translateY(-6px);
+    }
+    .second {
+        transform: translateY(6px);
     }
     .tempertures {
         gap: 4px;

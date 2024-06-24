@@ -8,7 +8,11 @@
 <div class="root hstack" style:color="var(--tab-{color})">
     <div class="label">{label}</div>
     <div class="temperature">{temperature}°</div>
-    <div class="diff">(+{diff})</div>
+    {#if diff > 0}
+        <div class="diff">(+{diff})</div>
+    {:else}
+        <div class="diff">({diff})</div>
+    {/if}
 </div>
 
 <style>

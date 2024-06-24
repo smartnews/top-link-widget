@@ -1,7 +1,6 @@
 <script lang="ts">
     import { format } from "date-fns";
-
-    export let date: Date;
+    const date = new Date();
 </script>
 
 <div class="root">

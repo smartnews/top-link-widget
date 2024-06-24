@@ -1,2 +1,24 @@
 ### Top Link API
 GET https://dev.smartnews.be/api/habits/v1/top_widget/links?locationId=129428
+
+### 緯度経度を渡す場合 (渋谷)
+GET https://dev.smartnews.be/api/habits/v1/top_widget/links?longitude=139.7029244955239&latitude=35.6654406570459
+
+### 長崎
+GET https://dev.smartnews.be/api/habits/v1/top_widget/links?latitude=32.74664365452887&longitude=129.87724467641917
+
+### Prod
+https://www.smartnews.be/api/habits/v1/top/links
+?osVersion=17.5.1
+&timestamp=1719220124148
+&manufacturer=apple
+&appVersion=24.6.30
+&edition=ja_JP
+&connectionType=wifi&timezone=Asia/Tokyo
+&deviceToken=y4_MngGlQUy3hBKZbXe0aw
+&brand=apple
+&model=iPhone14,2
+&locale=ja_jp
+&platform=ios
+&language=ja
+&countryCode=jp

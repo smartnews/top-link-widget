@@ -16,9 +16,14 @@ type HourlyWeatherForecast = {
     name: string;
 };
 
+export type Weather = "CLEAR" | "RAIN" | "CLOUDY" | "SNOW" | "HEAVY_RAIN"
+export type Conjunction = "AND" | "TO";
+
 type OptimalDailyWeatherForecast = {
     timestamp: number;
-    weather: string;
+    weather: Weather;
+    secondaryWeather?: Weather;
+    conjunction?: Conjunction;
     minTemperature: number;
     maxTemperature: number;
     minTemperatureDiff: number;
@@ -52,10 +57,16 @@ type Message = {
     status: string;
 };
 
-type LocationForecast = {
+type RRLocationForecast = {
     message: Message;
-    forecasts: any[];
+    forecasts: RRLocationForecastNode[];
 };
+export type RRLocationForecastNode = {
+    timestamp: number,
+    weather: "NONE" | "RAIN",
+    strength: "NONE" | "WEAK" | "MEDIUM" | "STRONG"
+}
+
 
 type TileUrls = {
     [key: string]: string;
@@ -67,7 +78,7 @@ type ContentRainRadar = {
     supportedEpochSeconds: number[];
     maxZoomLevel: number;
     tileUrls: TileUrls;
-    locationForecast: LocationForecast;
+    locationForecast: RRLocationForecast;
 };
 
 export type DataItemWeatherForecast = {
