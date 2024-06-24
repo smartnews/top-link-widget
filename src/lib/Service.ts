@@ -1,3 +1,4 @@
+import SNClientBridge from "@smartnews/sn-client-bridge";
 import type { DataItemWeatherForecast, TopLinkAPIResponse } from "./types";
 
 export async function fetchTopLinksData(searchParams: URLSearchParams) {
@@ -33,4 +34,10 @@ export async function getLocationIdFromLatLng(lat: number, lng: number) {
         return undefined;
     }
     return weather.content.locationId;
+}
+
+
+export async function getUserLocationFromBridge() {
+    const res = await SNClientBridge.postMessage('getLocation')
+    return res.result;
 }
