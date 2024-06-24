@@ -12,7 +12,9 @@
 <div class="root hstack">
     <img class="icon" src="./images/weather/clear.svg" alt="" />
     <div class="message">天気と雨雲レーダーの位置を設定しましょう</div>
-    <button on:click={onSettingButtonTap}>位置を設定</button>
+    <button data-pixel-click data-pixel-id="location_setting" on:click={onSettingButtonTap}
+        >位置を設定</button
+    >
 </div>
 
 <style>

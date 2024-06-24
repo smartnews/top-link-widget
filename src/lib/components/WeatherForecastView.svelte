@@ -13,7 +13,7 @@
     }
 </script>
 
-<a href={data?.url} class="root">
+<a href={data?.url} class="root" data-pixel-click data-pixel-id="weather">
     {#if forecast}
         {#if secondaryIcon}
             <div class="doubleIcon hstack">

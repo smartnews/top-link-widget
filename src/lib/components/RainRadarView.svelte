@@ -22,7 +22,7 @@
 </script>
 
 {#if data}
-    <a href={data.url} class="root hstack">
+    <a href={data.url} class="root hstack" data-pixel-click data-pixel-id="rain_radar">
         {#if icon}
             <img src="./images/rainRadar/{icon}.svg" alt="" />
         {:else}

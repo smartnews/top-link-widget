@@ -32,7 +32,7 @@
     });
 </script>
 
-<div class="root">
+<div class="root" data-pixel-impression data-pixel-id="widget">
     <CalendarView />
     <div class="border" />
     {#if loading}
