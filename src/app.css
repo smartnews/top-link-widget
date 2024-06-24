@@ -1,0 +1,176 @@
+:root {
+    color-scheme: light dark;
+    /* ダークモード対応 */
+
+    --low-emphasis: rgba(0, 0, 0, 0.38);
+    --mid-emphasis: rgba(0, 0, 0, 0.6);
+    --high-emphasis: rgba(0, 0, 0, 0.87);
+    --separator: rgba(0, 0, 0, 0.2);
+    --button-bg: rgba(0 0 0 /5%);
+    --bg-color: #eee;
+    --key-color: #0099eb;
+    --tab-red: #FD4749;
+    --tab-orange: #FB9200;
+    --tab-green: #00CC8B;
+    --tab-blue: #329fe7;
+    --tab-purple: #ab4dbe;
+    --tab-gray: #999999;
+
+    --bg: #ffffff;
+    --bg-high: rgb(255 255 255);
+    --bg-mid: rgb(245 245 245);
+    --bg-low: rgb(235 235 235);
+
+    --red: rgb(255 59 48);
+    --yellow: rgb(255 204 0);
+    --orange: rgb(255 149 0);
+    --pink: rgb(255 45 85);
+    --indigo: rgb(88 86 214);
+    --purple: rgb(175 82 222);
+    --blue: rgb(0 122 255);
+    --green: rgb(52 199 89);
+
+    --sans-serif: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell,
+        Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    --serif: "Noto Sans";
+
+    /* boostrapでスムーズスクロールが有効になっていてSvelteのクライアントサイドナビゲーションと相性が悪いので無効にする */
+    scroll-behavior: auto;
+}
+
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --low-emphasis: rgba(255, 255, 255, 0.38);
+        --mid-emphasis: rgba(255, 255, 255, 0.6);
+        --high-emphasis: rgba(255, 255, 255, 0.87);
+        --separator: rgba(255, 255, 255, 0.2);
+
+        --bg: #1c1c1c;
+        --bg-high: rgb(40 40 40);
+        --bg-mid: rgb(20 20 20);
+        --bg-low: rgb(0 0 0);
+
+        --red: rgb(255 69 48);
+        --blue: rgb(32 148 250);
+        --green: rgb(48 209 88);
+
+        --bs-border-color: rgba(255 255 255/10%);
+    }
+
+    hr {
+        border: 1px solid var(--separator);
+    }
+}
+
+* {
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    color: var(--high-emphasis);
+    font-family: var(--sans-serif);
+}
+
+.oneline {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.hstack {
+    display: flex;
+    align-items: center;
+}
+
+.vstack {
+    display: flex;
+    flex-direction: column;
+}
+
+._hstack {
+    display: flex;
+    align-items: center;
+}
+
+._vstack {
+    display: flex;
+    flex-direction: column;
+}
+
+spacer {
+    flex-grow: 2;
+}
+
+.spacer {
+    flex-grow: 2;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 p {
+    margin: 0;
+    padding: 0;
+}
+
+dialog {
+    border-radius: 16px;
+    border: none;
+    padding: 0;
+    background-color: var(--bg-high);
+}
+
+dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+    /* 背景色を半透明の黒に設定 */
+}
+
+a {
+    color: var(--blue);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.btn-primary {
+    background-color: var(--blue);
+    border-color: var(--blue);
+}
+
+.btn-outline-primary {
+    color: var(--blue);
+    border-color: var(--blue);
+}
+
+
+:root {
+    --ui-chrome: rgba(222 222 222/80%);
+    --ui-text: black;
+    --ui-tint-color: #007aff;
+    --ui-separator: rgba(0 0 0/15%);
+    --ui-bg-color: white;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --ui-chrome: rgba(32 32 32/50%);
+        --ui-text: white;
+        --ui-separator: rgba(255 255 255/15%);
+        --ui-bg-color: #1c1c1c;
+    }
+}
+
+.ui-chrome {
+    background-color: var(--ui-chrome);
+    backdrop-filter: blur(32px);
+    -webkit-backdrop-filter: blur(32px);
+}
