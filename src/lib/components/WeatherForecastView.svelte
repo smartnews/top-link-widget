@@ -3,6 +3,7 @@
     import TempertureView from "./TempertureView.svelte";
 
     export let data: DataItemWeatherForecast | undefined;
+    export let showCityNameForDebug = false;
     $: forecast = data?.content.optimalDailyWeatherForecast;
 
     $: icon = getIcon(forecast?.weather);
@@ -14,6 +15,9 @@
 </script>
 
 <a href={data?.url} class="root" data-pixel-click data-pixel-id="weather">
+    {#if showCityNameForDebug}
+        <div>{data?.content.cityName}</div>
+    {/if}
     {#if forecast}
         {#if secondaryIcon}
             <div class="doubleIcon hstack">

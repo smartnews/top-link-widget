@@ -11,6 +11,10 @@ export namespace APIService {
     }
 
     export async function fetchTopLinksByLocationInfo(location: LocationInfo) {
+        if (!location.latitude || !location.longitude || !location.locationId) {
+            console.warn("緯度経度とlocationId両方が必要です")
+            return undefined;
+        }
         const res = await fetch(`https://www.smartnews.be/api/habits/v1/top_widget/links?locationId=${location.locationId}&latitude=${location.latitude}&longitude=${location.longitude}`)
         const data: TopLinkAPIResponse = await res.json();
         return data;

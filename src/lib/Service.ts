@@ -13,3 +13,10 @@ export async function getUserLocationInfo(searchParams: URLSearchParams): Promis
         }
     }
 }
+export async function getUserLocationId(searchParams: URLSearchParams): Promise<number | undefined> {
+    if (SNClientBridge.hasBridgeInterface()) {
+        return BridgeService.getUserLocationId();
+    } else {
+        return Number(searchParams.get("locationId"))
+    }
+}

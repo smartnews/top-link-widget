@@ -7,7 +7,7 @@ export namespace BridgeService {
         const res = await SNClientBridge.postMessage('getLocation');
         return res.result;
     }
-    async function getUserLocationId(): Promise<number | undefined> {
+    export async function getUserLocationId(): Promise<number | undefined> {
         const res = await SNClientBridge.postMessage("getLocationId");
         if (res.result.locationId) {
             return res.result.locationId;
