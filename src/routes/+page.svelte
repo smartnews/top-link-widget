@@ -1,24 +1,29 @@
 <script lang="ts">
     import { page } from "$app/stores";
-    import { fetchTopLinksData } from "$lib/Service";
+    import { APIService } from "$lib/APIService";
+    import { getUserLocationInfo } from "$lib/Service";
     import CalendarView from "$lib/components/CalendarView.svelte";
+    import DebugView from "$lib/components/DebugView.svelte";
     import NoLocationView from "$lib/components/NoLocationView.svelte";
     import RainRadarView from "$lib/components/RainRadarView.svelte";
     import WeatherForecastView from "$lib/components/WeatherForecastView.svelte";
     import type {
         DataItemRainRadar,
         DataItemWeatherForecast,
+        LocationInfo,
         TopLinkAPIResponse
     } from "$lib/types";
     import { onMount } from "svelte";
 
+    let locationInfo: LocationInfo;
     let response: TopLinkAPIResponse | undefined;
     let forecastData: DataItemWeatherForecast;
     let rainRadarData: DataItemRainRadar;
     let loading = true;
 
     onMount(async () => {
-        response = await fetchTopLinksData($page.url.searchParams);
+        locationInfo = await getUserLocationInfo($page.url.searchParams);
+        response = await APIService.fetchTopLinksByLocationInfo(locationInfo);
         if (!response) {
             loading = false;
             return;
@@ -33,6 +38,7 @@
 </script>
 
 <div class="root" data-pixel-impression data-pixel-id="widget">
+    <DebugView data={locationInfo} />
     <CalendarView />
     <div class="border" />
     {#if loading}
@@ -51,6 +57,7 @@
         display: flex;
         height: 48px;
         max-width: 480px;
+        overflow: hidden;
     }
     .border {
         flex-shrink: 0;

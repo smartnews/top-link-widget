@@ -3,10 +3,10 @@
     const date = new Date();
 </script>
 
-<div class="root">
+<a class="root" href="smartnews://openMorningPackage?url=https%3A%2F%2Fmp.smartnews.com%2F">
     <div class="date">{format(date, "M月d日")}</div>
     <div class="youbi">{format(date, "eeee")}</div>
-</div>
+</a>
 
 <style>
     .root {
@@ -18,6 +18,7 @@
         justify-content: center;
         gap: 4px;
         line-height: 1;
+        color: var(--high-emphasis);
     }
     .date {
         font-weight: 600;

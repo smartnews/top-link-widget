@@ -15,7 +15,7 @@
 {#if weather}
     <a
         href="./?locationId={weather.content.locationId}&latitude={placeData.location
-            .latidule}&longitude={placeData.location.longitude}"
+            .latitude}&longitude={placeData.location.longitude}"
         class="root vstack"
     >
         <div class="header hstack">

@@ -111,12 +111,12 @@ export type TopLinkAPIResponse = {
     data: DataItem[];
 };
 
-export type Location = {
-    latidule: number;
+export type LocationInfo = {
+    latitude: number;
     longitude: number;
-    id?: string;
+    locationId?: number;
 }
 export type PlaceData = {
-    location: Location;
+    location: LocationInfo;
     response: TopLinkAPIResponse
 }

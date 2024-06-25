@@ -65,6 +65,12 @@
 
 * {
     box-sizing: border-box;
+    user-select: none;
+
+    /* iOSでテキストの選択やリンクのドラッグを無効に */
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-drag: none;
 }
 
 a {

@@ -2,10 +2,7 @@
     import SNClientBridge from "@smartnews/sn-client-bridge";
 
     function onSettingButtonTap() {
-        SNClientBridge.postMessage("openSettings", {
-            type: "system",
-            scope: "application_details"
-        });
+        SNClientBridge.postMessage("selectLocationId");
     }
 </script>
 

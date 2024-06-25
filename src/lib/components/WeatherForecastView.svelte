@@ -19,6 +19,7 @@
             <div class="doubleIcon hstack">
                 <img class="icon first" src="./images/weather/{icon}.svg" alt="" />
                 <img class="icon second" src="./images/weather/{secondaryIcon}.svg" alt="" />
+                <div class="slash">／</div>
             </div>
         {:else}
             <img class="icon single" src="./images/weather/{icon}.svg" alt="" />
@@ -55,6 +56,18 @@
     }
     .icon {
         object-fit: contain;
+    }
+    .doubleIcon {
+        position: relative;
+    }
+    .slash {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--low-emphasis);
+        font-size: 13px;
     }
     .doubleIcon > img {
         width: 24px;
