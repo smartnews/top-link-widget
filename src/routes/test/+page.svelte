@@ -7,7 +7,7 @@
 
 <div class="root vstack">
     {#each data.data as res}
-        <Cell data={res} />
+        <Cell placeData={res} />
     {/each}
 </div>
 

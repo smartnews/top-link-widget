@@ -110,3 +110,13 @@ type DataItem = DataItemWeatherForecast | DataItemWarning | DataItemRainRadar;
 export type TopLinkAPIResponse = {
     data: DataItem[];
 };
+
+export type Location = {
+    latidule: number;
+    longitude: number;
+    id?: string;
+}
+export type PlaceData = {
+    location: Location;
+    response: TopLinkAPIResponse
+}
