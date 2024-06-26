@@ -3,6 +3,7 @@
     import { APIService } from "$lib/APIService";
     import { getUserLocationId, getUserLocationInfo } from "$lib/Service";
     import CalendarView from "$lib/components/CalendarView.svelte";
+    import DebugView from "$lib/components/DebugView.svelte";
     import NoLocationView from "$lib/components/NoLocationView.svelte";
     import RainRadarView from "$lib/components/RainRadarView.svelte";
     import WeatherForecastView from "$lib/components/WeatherForecastView.svelte";
@@ -12,6 +13,7 @@
         LocationInfo,
         TopLinkAPIResponse
     } from "$lib/types";
+    import SNClientBridge from "@smartnews/sn-client-bridge";
     import { onMount } from "svelte";
 
     let locationInfo: LocationInfo;
@@ -46,6 +48,7 @@
         // 「読み込み中」がチラつくので、2度目以降は loading を true にしない
         locationInfo = await getUserLocationInfo($page.url.searchParams);
         response = await APIService.fetchTopLinksByLocationInfo(locationInfo);
+        console.log(response);
         if (!response) {
             loading = false;
             return;
@@ -60,13 +63,13 @@
 </script>
 
 <div class="root" data-pixel-impression data-pixel-id="widget">
-    <!-- <DebugView data={locationInfo} /> -->
+    <DebugView data={locationInfo} />
     <CalendarView />
     <div class="border" />
     {#if loading}
         <div class="loading">読み込み中...</div>
     {:else if response}
-        <WeatherForecastView data={forecastData} />
+        <WeatherForecastView data={forecastData} showCityNameForDebug />
         <div class="border" />
         <RainRadarView data={rainRadarData} />
     {:else}

@@ -112,8 +112,8 @@ export type TopLinkAPIResponse = {
 };
 
 export type LocationInfo = {
-    latitude: number;
-    longitude: number;
+    latitude?: number;
+    longitude?: number;
     locationId?: number;
 }
 export type PlaceData = {
