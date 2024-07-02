@@ -111,6 +111,11 @@ export type TopLinkAPIResponse = {
     data: DataItem[];
 };
 
+export type LatLng = {
+    latitude: number;
+    longitude: number;
+}
+
 export type LocationInfo = {
     latitude?: number;
     longitude?: number;

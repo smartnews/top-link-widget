@@ -1,6 +1,7 @@
 import SNClientBridge from "@smartnews/sn-client-bridge";
 import { BridgeService } from "./BridgeService";
-import type { LocationInfo } from "./types";
+import type { LatLng, LocationInfo } from "./types";
+
 
 export async function getUserLocationInfo(searchParams: URLSearchParams): Promise<LocationInfo> {
     if (SNClientBridge.hasBridgeInterface()) {

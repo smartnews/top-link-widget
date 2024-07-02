@@ -13,7 +13,6 @@
         LocationInfo,
         TopLinkAPIResponse
     } from "$lib/types";
-    import SNClientBridge from "@smartnews/sn-client-bridge";
     import { onMount } from "svelte";
 
     let locationInfo: LocationInfo;
@@ -63,13 +62,13 @@
 </script>
 
 <div class="root" data-pixel-impression data-pixel-id="widget">
-    <DebugView data={locationInfo} />
+    <!-- <DebugView data={locationInfo} /> -->
     <CalendarView />
     <div class="border" />
     {#if loading}
         <div class="loading">読み込み中...</div>
     {:else if response}
-        <WeatherForecastView data={forecastData} showCityNameForDebug />
+        <WeatherForecastView data={forecastData} showCityNameForDebug={false} />
         <div class="border" />
         <RainRadarView data={rainRadarData} />
     {:else}

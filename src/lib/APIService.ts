@@ -10,17 +10,19 @@ export namespace APIService {
         return data;
     }
 
+    /**
+     * API は locationId と緯度経度を同時に渡すと緯度経度が優先される仕様。
+     * なのでユーザーが意図的に locationId を指定したときは、それだけを渡して情報を得る
+     */
     export async function fetchTopLinksByLocationInfo(location: LocationInfo) {
-        if (!location.latitude || !location.longitude || !location.locationId) {
-            console.warn("緯度経度とlocationId両方が必要です")
-            return undefined;
+        if (location.locationId) {
+            return fetchTopLinksByLocationId(location.locationId);
+        } else if (location.latitude && location.longitude) {
+            return fetchTopLinksByLatLng(location.latitude, location.longitude);
         }
-        const res = await fetch(`https://www.smartnews.be/api/habits/v1/top_widget/links?locationId=${location.locationId}&latitude=${location.latitude}&longitude=${location.longitude}`)
-        const data: TopLinkAPIResponse = await res.json();
-        return data;
     }
 
-    export async function fetchTopLinksByLocationId(locationId?: string) {
+    export async function fetchTopLinksByLocationId(locationId?: number) {
         if (!locationId) return undefined;
         const res = await fetch(`https://www.smartnews.be/api/habits/v1/top_widget/links?locationId=${locationId}`)
         const data: TopLinkAPIResponse = await res.json();

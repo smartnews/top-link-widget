@@ -39,7 +39,7 @@
         width: 100%;
         padding: 8px;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
         gap: 4px;
         line-height: 1;
     }

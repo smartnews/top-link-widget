@@ -1,14 +1,14 @@
 import SNClientBridge from "@smartnews/sn-client-bridge";
-import type { LocationInfo } from "./types";
+import type { LocationInfo, LatLng } from "./types";
 
 
 export namespace BridgeService {
-    async function getUserLatLng(): Promise<{ latitude: number | undefined; longitude: number | undefined; }> {
+    export async function getUserLatLng(): Promise<LatLng | undefined> {
         try {
             const res = await SNClientBridge.postMessage('getLocation');
             return res.result;
         } catch (e) {
-            return { latitude: undefined, longitude: undefined }
+            return undefined
         }
 
     }
@@ -22,8 +22,8 @@ export namespace BridgeService {
         const latlng = await getUserLatLng();
         const locationId = await getUserLocationId();
         return {
-            latitude: latlng.latitude,
-            longitude: latlng.longitude,
+            latitude: latlng?.latitude,
+            longitude: latlng?.longitude,
             locationId: locationId
         };
     }

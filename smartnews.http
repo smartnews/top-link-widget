@@ -1,11 +1,22 @@
-### Top Link API
-GET https://www.smartnews.be/api/habits/v1/top_widget/links?locationId=129428
+### Location ID だけ
+GET https://www.smartnews.be/api/habits/v1/top_widget/links
+?locationId=71380
 
 ### 緯度経度を渡す場合 (渋谷)
-GET https://www.smartnews.be/api/habits/v1/top_widget/links?longitude=139.7029244955239&latitude=35.6654406570459
+GET https://www.smartnews.be/api/habits/v1/top_widget/links
+?longitude=139.7029244955239
+&latitude=35.6654406570459
+
+### 緯度経度とLocationID (緯度経度とlocationIdを同時に渡すと緯度経度が優先されるので注意)
+GET https://www.smartnews.be/api/habits/v1/top_widget/links
+?locationId=71380
+&longitude=139.7029244955239
+&latitude=35.6654406570459
 
 ### 長崎
-GET https://www.smartnews.be/api/habits/v1/top_widget/links?latitude=32.74664365452887&longitude=129.87724467641917
+GET https://www.smartnews.be/api/habits/v1/top_widget/links
+?latitude=32.74664365452887
+&longitude=129.87724467641917
 
 ### Prod
 https://www.smartnews.be/api/habits/v1/top/links
