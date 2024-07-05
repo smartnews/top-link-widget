@@ -3,7 +3,6 @@
     import { APIService } from "$lib/APIService";
     import { getUserLocationId, getUserLocationInfo } from "$lib/Service";
     import CalendarView from "$lib/components/CalendarView.svelte";
-    import DebugView from "$lib/components/DebugView.svelte";
     import NoLocationView from "$lib/components/NoLocationView.svelte";
     import RainRadarView from "$lib/components/RainRadarView.svelte";
     import WeatherForecastView from "$lib/components/WeatherForecastView.svelte";
