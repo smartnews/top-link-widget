@@ -10,8 +10,11 @@
     </div>
     <!-- <div class="youbi">{format(date, "eeee")}</div> -->
     <div class="ad hstack">
-        <div>ミニゲーム</div>
-        <img class="chevron" src="{base}/images/chevron.svg" alt="" />
+        <div class="icons hstack">
+            <img class="icon" src={`${base}/images/railway.png`} alt="" />
+            <img class="icon" src={`${base}/images/video-game.png`} alt="" />
+            <img class="icon" src={`${base}/images/baseball.png`} alt="" />
+        </div>
     </div>
 </a>
 
@@ -40,8 +43,14 @@
         font-weight: 600;
         font-feature-settings: "palt";
     }
-    .youbi {
-        font-size: 11px;
-        color: var(--low-emphasis);
+    .icons {
+        gap: 3px;
+        background-color: var(--button-bg);
+        padding: 4px;
+        border-radius: 44px;
+    }
+    .icon {
+        height: 11px;
+        object-fit: contain;
     }
 </style>

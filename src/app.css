@@ -6,7 +6,7 @@
     --mid-emphasis: rgba(0, 0, 0, 0.6);
     --high-emphasis: rgba(0, 0, 0, 0.87);
     --separator: rgba(0, 0, 0, 0.2);
-    --button-bg: rgba(0 0 0 /5%);
+    --button-bg: rgba(0 0 0 /10%);
     --bg-color: #eee;
     --key-color: #0099eb;
     --tab-red: #FD4749;
@@ -45,6 +45,7 @@
         --mid-emphasis: rgba(255, 255, 255, 0.6);
         --high-emphasis: rgba(255, 255, 255, 0.87);
         --separator: rgba(255, 255, 255, 0.2);
+        --button-bg: rgba(255 255 255 /10%);
 
         --bg: #1c1c1c;
         --bg-high: rgb(40 40 40);
