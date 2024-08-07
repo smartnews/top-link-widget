@@ -2,6 +2,8 @@
     import { base } from "$app/paths";
     import { format } from "date-fns";
     const date = new Date();
+
+    const images = ["railway", "game1", "game2", "baseball"];
 </script>
 
 <a class="root" href="smartnews://openMorningPackage?url=https%3A%2F%2Fmp.smartnews.com%2F">
@@ -11,9 +13,11 @@
     <!-- <div class="youbi">{format(date, "eeee")}</div> -->
     <div class="ad hstack">
         <div class="icons hstack">
-            <img class="icon" src={`${base}/images/railway.png`} alt="" />
-            <img class="icon" src={`${base}/images/video-game.png`} alt="" />
-            <img class="icon" src={`${base}/images/baseball.png`} alt="" />
+            {#each images as image}
+                <div class="image-container">
+                    <img src={`${base}/images/${image}.png`} alt="" />
+                </div>
+            {/each}
         </div>
     </div>
 </a>
@@ -36,21 +40,40 @@
         color: var(--key-color);
         font-feature-settings: "palt";
     }
-    .chevron {
-        height: 11px;
-    }
     .date {
         font-weight: 600;
         font-feature-settings: "palt";
     }
     .icons {
-        gap: 3px;
-        background-color: var(--button-bg);
-        padding: 4px;
-        border-radius: 44px;
+        gap: 2px;
     }
-    .icon {
-        height: 11px;
-        object-fit: contain;
+    .image-container {
+        position: relative;
+        display: inline-block;
+    }
+
+    .image-container img {
+        display: block;
+        width: 16px;
+        height: 16px;
+        border-radius: 22%;
+    }
+
+    .image-container::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0.5px solid rgba(0, 0, 0, 0.38);
+        box-sizing: border-box;
+        pointer-events: none;
+        border-radius: 22%;
+    }
+    @media (prefers-color-scheme: dark) {
+        .image-container::before {
+            border-color: rgba(255, 255, 255, 0.38);
+        }
     }
 </style>
