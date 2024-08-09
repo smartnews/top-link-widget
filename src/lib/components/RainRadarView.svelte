@@ -1,6 +1,7 @@
 <script lang="ts">
     import type { DataItemRainRadar, RRLocationForecastNode } from "$lib/types";
     import { stripHtmlTags } from "$lib/utils/StringUtil";
+    import { pipe } from "@fxts/core";
 
     export let data: DataItemRainRadar;
     console.log(data);
@@ -9,6 +10,17 @@
     });
     // console.log(currentInfo);
     $: icon = getIcon(currentInfo);
+
+    $: message = pipe(
+        data.content.locationForecast.message.text,
+        stripHtmlTags,
+        (x) => {
+            return x.replace("降り始める", "降る");
+        },
+        (x) => {
+            return x.replace(/です$/, "");
+        }
+    );
 
     function getIcon(_currentInfo?: RRLocationForecastNode) {
         if (!_currentInfo) {
@@ -28,7 +40,7 @@
         {:else}
             <div>{data.content.locationForecast.message.status}</div>
         {/if}
-        <div class="message">{stripHtmlTags(data.content.locationForecast.message.text)}</div>
+        <div class="message">{message}</div>
     </a>
 {:else}
     <div>no data</div>
