@@ -21,25 +21,19 @@
     let loading = true;
     let prevLocationId: number | undefined;
 
-    // locationId をポーリング
-    onMount(() => {
-        const id = setInterval(checkLocation, 1000);
-        return () => {
-            clearInterval(id);
-        };
-    });
-
     onMount(() => {
         refresh();
     });
 
-    async function checkLocation() {
-        const locationId = await getUserLocationId($page.url.searchParams);
-        if (locationId != prevLocationId) {
-            console.log("locationIdに変更がありました");
-            refresh();
-        }
-        prevLocationId = locationId;
+    // SmartNews上で、画面が表示された時の処理
+    onMount(() => {
+        document.addEventListener("visibilitychange", onVisibilityChange);
+        return () => document.removeEventListener("visibilitychange", onVisibilityChange);
+    });
+    async function onVisibilityChange() {
+        if (document.hidden) return;
+
+        refresh();
     }
 
     async function refresh() {
