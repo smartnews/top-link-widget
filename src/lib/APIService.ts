@@ -12,13 +12,12 @@ export namespace APIService {
 
     /**
      * API は locationId と緯度経度を同時に渡すと緯度経度が優先される仕様。
-     * なのでユーザーが意図的に locationId を指定したときは、それだけを渡して情報を得る
      */
     export async function fetchTopLinksByLocationInfo(location: LocationInfo) {
-        if (location.locationId) {
-            return fetchTopLinksByLocationId(location.locationId);
-        } else if (location.latitude && location.longitude) {
+        if (location.latitude && location.longitude) {
             return fetchTopLinksByLatLng(location.latitude, location.longitude);
+        } else if (location.locationId) {
+            return fetchTopLinksByLocationId(location.locationId);
         }
     }
 

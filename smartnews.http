@@ -1,22 +1,33 @@
-### Location ID だけ
+### Location ID だけ(渋谷)
 GET https://www.smartnews.be/api/habits/v1/top_widget/links
-?locationId=71380
+?locationId=70604
+
+### Location ID だけ(長崎)。緯度経度を渡さないと雨雲レーダーの値は渋谷の結果が固定で返るようです。
+GET https://www.smartnews.be/api/habits/v1/top_widget/links
+?locationId=71273
 
 ### 緯度経度を渡す場合 (渋谷)
 GET https://www.smartnews.be/api/habits/v1/top_widget/links
 ?longitude=139.7029244955239
 &latitude=35.6654406570459
 
-### 緯度経度とLocationID (緯度経度とlocationIdを同時に渡すと緯度経度が優先されるので注意)
-GET https://www.smartnews.be/api/habits/v1/top_widget/links
-?locationId=71380
-&longitude=139.7029244955239
-&latitude=35.6654406570459
-
-### 長崎
+### 緯度経度を渡す場合 (長崎)。緯度経度だけ渡せば、天気予報も雨雲レーダーも期待通り返ります
 GET https://www.smartnews.be/api/habits/v1/top_widget/links
 ?latitude=32.74664365452887
 &longitude=129.87724467641917
+
+### 緯度経度とLocationID (緯度経度とlocationIdを同時に渡すと緯度経度が優先されるので注意。ここではlocationIdとして渋谷、緯度経度として長崎を渡していますが、長崎の情報だけ返され、渋谷の情報は入りません)
+GET https://www.smartnews.be/api/habits/v1/top_widget/links
+?locationId=70604
+&latitude=32.74664365452887
+&longitude=129.87724467641917
+
+### 長崎
+GET https://www.smartnews.be/api/habits/v1/top_widget/links
+?locationId=71273
+&latitude=32.74664365452887
+&longitude=129.87724467641917
+
 
 ### Prod
 https://www.smartnews.be/api/habits/v1/top/links
@@ -33,3 +44,9 @@ https://www.smartnews.be/api/habits/v1/top/links
 &platform=ios
 &language=ja
 &countryCode=jp
+
+### Prod
+curl -H "Host: www.smartnews.be" -H "accept: */*" -H "content-type: application/x-www-form-urlencoded" -H "authorization: Bearer eyJraWQiOiI0MjA1MTNhNzUwIiwiYWxnIjoiUFMyNTYifQ.eyJzdWIiOiI0UktMSjRBRzlnSUpacHdlaWdSdER5IiwiaXNzIjoiaHR0cHM6Ly9hY2NvdW50cy5zbWFydG5ld3MuY29tIiwic25haWQiOiJzbnUtNUlkazBhbURmc01La2VlR21pemVjSSIsInNuZWlkIjoiMFJDUnZrcWdEWmZkMlE3UFV0elpGMG9yUG5CZWlJaGFYYm9LcEl1NldmRT0iLCJzbmF1dCI6MTcyNjgyMTk4MSwiYXVkIjoic21hcnRuZXdzLWNsaWVudHMiLCJzbmlkcCI6Imd0Iiwic25jYXQiOjE3MjY4MjE5ODEsInNuciI6WyJnIl0sInNudCI6InN0Iiwic252IjoiMSIsImV4cCI6MTcyNzM4MDI0MCwiaWF0IjoxNzI3MjkzODQwLCJqdGkiOiI0WjFiMThGbnYwS1Y5U2I3ZW9xdHcyIn0.W-gBCaFU3SI-IDKc-MTQqV5n5lPS7u4cWriAyd34prob6bqIA_3nGQTkeEPKvBE5H_Ju0ng8uvGjh_WS0T6zjER6u8pk1dJYTKuP7g-UquR0SomhsvA2sF2WdGmlkQLlPg_iSGZPMmY96fnqhzu_Y4W8Z8DiK2-6qtiIxpSs2eI7zyfaG0u1e97_lRo0cnbe-Muhcek3nZekukLyKMaPr1mM8I_OO-VhwafUNH5uSbZ5SZdTis1E6w7qKWPmuX9WS6l-ZZzDvDm0mMx6-FwV2U95Y8OFE8oZb6vF7IV9kZQb63PoM-SsUT7hRCT3tcV1YF0M2VqvEgWb__4EQmUpnA" -H "user-agent: SmartNews/24.9.35.40031 CFNetwork/1568.100.1 Darwin/24.0.0" -H "accept-language: ja" --data-binary "connectionType=1&carrier=--&deviceToken=YfIMQ8jeSMqFPl6UzCxIlw&deviceActivationLocalTime=1726821981531&longitude=139.7028453712128&u=1726821981,male,41&locationId=70604&cityCode=13113&transitLineCode=&edition=ja_JP&channelIdentifiers=cr_ja_my_channel_prototype,cr_ja_local,cr_ja_coupon,cr_ja_premium_content,cr_ja_entertainment,cr_ja_sports,cr_ja_humor,cr_ja_national,cr_ja_politics,cr_ja_economy,cr_ja_technology,cr_ja_international,cr_ja_infection,cr_ja_video,cr_ja_economy_car,cr_ja_column2,cr_ja_extra_animal,cr_ja_entertainment_game,cr_ja_sports_baseball,cr_ja_sports_soccer,cr_ja_column_career,cr_ja_column_love,cr_ja_food&adId=00000000-0000-0000-0000-000000000000&osVersion=18.0&latitude=35.66553702440858&appVersion=24.9.35&blockedId=&platform=ios&sandbox=0" --compressed "https://www.smartnews.be/api/habits/v1/top/links?appVersion=24.9.35&platform=ios&edition=ja_JP&language=ja&locale=ja_jp&deviceToken=YfIMQ8jeSMqFPl6UzCxIlw&osVersion=18.0&countryCode=jp&model=iPhone17,1&brand=apple&timestamp=1727321055107&manufacturer=apple&connectionType=wifi&timezone=Asia/Tokyo"
+
+### Prod 雨雲レーダー
+curl -H "Host: www.smartnews.be" -H "user-agent: SmartNews/24.9.35.40031 CFNetwork/1568.100.1 Darwin/24.0.0" -H "accept: */*" -H "accept-language: ja" --compressed "https://www.smartnews.be/api/weather/jp/v1/rainradar/metadata?longitude=139.58713833242652&latitude=35.698944080806996"

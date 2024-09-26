@@ -1,7 +1,7 @@
 <script lang="ts">
     import { page } from "$app/stores";
     import { APIService } from "$lib/APIService";
-    import { getUserLocationId, getUserLocationInfo } from "$lib/Service";
+    import { getUserLocationInfo } from "$lib/Service";
     import CalendarView from "$lib/components/CalendarView.svelte";
     import NoLocationView from "$lib/components/NoLocationView.svelte";
     import RainRadarView from "$lib/components/RainRadarView.svelte";
@@ -19,7 +19,6 @@
     let forecastData: DataItemWeatherForecast;
     let rainRadarData: DataItemRainRadar;
     let loading = true;
-    let prevLocationId: number | undefined;
 
     onMount(() => {
         refresh();

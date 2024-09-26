@@ -1,14 +1,12 @@
 
-import type { LocationInfo, PlaceData } from '$lib/types';
+import type { LatLng, LocationInfo, PlaceData } from '$lib/types';
 import { compact, concurrent, map, pipe, toArray, toAsync } from "@fxts/core";
 import type { PageServerLoad } from './$types';
 import { APIService } from '$lib/APIService';
 
 
 export const load: PageServerLoad = async ({ params }) => {
-
-
-    const places: LocationInfo[] = [
+    const places: LatLng[] = [
         // 稚内市
         { latitude: 45.415784, longitude: 141.673462 },
         // 札幌市
