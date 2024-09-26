@@ -14,7 +14,12 @@
     }
 </script>
 
-<a href={data?.url} class="root" data-pixel-click data-pixel-id="weather">
+<a
+    href="smartnews://openWeather?type=current&referrer=slimTopWidget"
+    class="root"
+    data-pixel-click
+    data-pixel-id="weather"
+>
     {#if showCityNameForDebug}
         <div>{data?.content.cityName}</div>
     {/if}
