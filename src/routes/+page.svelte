@@ -6,6 +6,7 @@
     import NoLocationView from "$lib/components/NoLocationView.svelte";
     import RainRadarView from "$lib/components/RainRadarView.svelte";
     import WeatherForecastView from "$lib/components/WeatherForecastView.svelte";
+    import { logEvent } from "$lib/pixel/logging";
     import type {
         DataItemRainRadar,
         DataItemWeatherForecast,
@@ -19,6 +20,7 @@
     let forecastData: DataItemWeatherForecast;
     let rainRadarData: DataItemRainRadar;
     let loading = true;
+    let status = "初期化中...";
 
     onMount(() => {
         refresh();
@@ -36,20 +38,31 @@
     }
 
     async function refresh() {
+        logEvent("refreshStart", { id: "dummy" });
         // 「読み込み中」がチラつくので、2度目以降は loading を true にしない
+        status = "現在地を取得中...";
+        logEvent("getUserLocationInfoStart", { id: "dummy" });
         locationInfo = await getUserLocationInfo($page.url.searchParams);
+        logEvent("getUserLocationInfoComplete", { id: "dummy" });
+        status = "天気情報を取得中...";
+        logEvent("fetchTopLinksByLocationInfoStart", { id: "dummy" });
         response = await APIService.fetchTopLinksByLocationInfo(locationInfo);
+        logEvent("fetchTopLinksByLocationInfoComplete", { id: "dummy" });
         console.log(response);
         if (!response) {
             loading = false;
             return;
         }
         // console.log(response);
+        logEvent("parseResponseStart", { id: "dummy" });
+        status = "天気情報をパース中...";
         forecastData = response.data.find(
             (x) => x.title == "Weather Forecast"
         ) as DataItemWeatherForecast;
         rainRadarData = response.data.find((x) => x.title == "Rain Radar") as DataItemRainRadar;
+        logEvent("parseResponseComplete", { id: "dummy" });
         loading = false;
+        logEvent("refreshComplete", { id: "dummy" });
     }
 </script>
 
@@ -58,7 +71,7 @@
     <CalendarView />
     <div class="border" />
     {#if loading}
-        <div class="loading">読み込み中...</div>
+        <div class="loading">{status}</div>
     {:else if response}
         <WeatherForecastView data={forecastData} showCityNameForDebug={false} />
         <div class="border" />
